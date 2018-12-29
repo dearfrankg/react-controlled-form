@@ -23,24 +23,20 @@ class FormContainer extends Component {
       genderOptions: ["Male", "Female", "Others"],
       skillOptions: ["Programming", "Development", "Design", "Testing"]
     };
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
-    this.handleCheckBox = this.handleCheckBox.bind(this);
-    this.handleInput = this.handleInput.bind(this);
   }
 
   /* This lifecycle hook gets executed when the component mounts */
 
-  handleInput(e) {
+  handleInput = e => {
     let value = e.target.value;
     let name = e.target.name;
     this.setState(
       prevState => ({ newUser: { ...prevState.newUser, [name]: value } }),
       () => console.log(this.state.newUser)
     );
-  }
+  };
 
-  handleCheckBox(e) {
+  handleCheckBox = e => {
     const newSelection = e.target.value;
     let newSelectionArray;
 
@@ -51,9 +47,9 @@ class FormContainer extends Component {
     }
 
     this.setState(prevState => ({ newUser: { ...prevState.newUser, skills: newSelectionArray } }));
-  }
+  };
 
-  handleFormSubmit(e) {
+  handleFormSubmit = e => {
     e.preventDefault();
     let userData = this.state.newUser;
     console.log("userData: ", userData);
@@ -71,9 +67,9 @@ class FormContainer extends Component {
     //     console.log("Successful" + data);
     //   });
     // });
-  }
+  };
 
-  handleClearForm(e) {
+  handleClearForm = e => {
     e.preventDefault();
     const user = {
       newUser: {
@@ -88,11 +84,12 @@ class FormContainer extends Component {
       () => user,
       () => (document.querySelector(".out").innerHTML = JSON.stringify(this.state.newUser, null, 2))
     );
-  }
+  };
 
   render() {
     return (
       <form className="container-fluid" onSubmit={this.handleFormSubmit}>
+        {/* Name of the user */}
         <Input
           inputtype={"text"}
           title={"Full Name"}
@@ -101,7 +98,7 @@ class FormContainer extends Component {
           placeholder={"Enter your name"}
           handleChange={this.handleInput}
         />{" "}
-        {/* Name of the user */}
+        {/* Age */}
         <Input
           inputtype={"number"}
           title={"Age"}
@@ -110,7 +107,7 @@ class FormContainer extends Component {
           placeholder={"Enter your age"}
           handleChange={this.handleInput}
         />{" "}
-        {/* Age */}
+        {/* Gender Selection */}
         <Select
           title={"Gender"}
           name={"gender"}
@@ -119,7 +116,7 @@ class FormContainer extends Component {
           placeholder={"Select Gender"}
           handleChange={this.handleInput}
         />{" "}
-        {/* Age Selection */}
+        {/* Skill checkbox group */}
         <CheckBox
           title={"Skills"}
           name={"skills"}
@@ -127,7 +124,7 @@ class FormContainer extends Component {
           selectedOptions={this.state.newUser.skills}
           handleChange={this.handleCheckBox}
         />{" "}
-        {/* Skill */}
+        {/* About textarea */}
         <TextArea
           title={"About you."}
           name={"about"}
@@ -136,21 +133,20 @@ class FormContainer extends Component {
           placeholder={"Describe your past experience and skills"}
           handleChange={this.handleInput}
         />
-        {/* About you */}
+        {/* Submit button */}
         <Button
           type={"primary"}
           title={"Submit"}
           action={this.handleFormSubmit}
           style={buttonStyle}
         />{" "}
-        {/*Submit */}
+        {/* Clear form button */}
         <Button
           type={"secondary"}
           title={"Clear"}
           action={this.handleClearForm}
           style={buttonStyle}
         />{" "}
-        {/* Clear the form */}
       </form>
     );
   }
