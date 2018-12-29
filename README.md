@@ -1,6 +1,11 @@
-## about
+## React Form Demo Using Controlled Components
 
-This is a basic forms demo using react. The app demonstrates how react components can be use dto construct foms. The components in this demo are reusable.
+Controlled Components vs Uncontrolled Components
+
+- Controlled Components manage state using react local state. (recommended)
+- Uncontrolled Components manage state using a reference to the DOM node.
+
+## Getting Started
 
 - clone repo
 - `npm install`
