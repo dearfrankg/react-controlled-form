@@ -92,67 +92,70 @@ class FormContainer extends Component {
   };
 
   render() {
+    const fields = {
+      name: {
+        inputtype: "text",
+        title: "Full Name",
+        name: "name",
+        value: this.state.newUser.name,
+        placeholder: "Enter your name",
+        handleChange: this.handleInput
+      },
+      age: {
+        inputtype: "number",
+        title: "Age",
+        name: "age",
+        value: this.state.newUser.age,
+        placeholder: "Enter your age",
+        handleChange: this.handleInput
+      },
+      gender: {
+        title: "Gender",
+        name: "gender",
+        options: this.state.genderOptions,
+        value: this.state.newUser.gender,
+        placeholder: "Select Gender",
+        handleChange: this.handleInput
+      },
+      skills: {
+        title: "Skills",
+        name: "skills",
+        options: this.state.skillOptions,
+        selectedOptions: this.state.newUser.skills,
+        handleChange: this.handleCheckBox
+      },
+      about: {
+        title: "About you",
+        name: "about",
+        rows: 10,
+        value: this.state.newUser.about,
+        placeholder: "Describe your past experience and skills",
+        handleChange: this.handleInput
+      },
+      submitButton: {
+        type: "primary",
+        title: "Submit",
+        action: this.handleFormSubmit,
+        style: buttonStyle
+      },
+      clearButton: {
+        type: "secondary",
+        title: "Clear",
+        action: this.handleClearForm,
+        style: buttonStyle
+      }
+    };
+
     return (
       <FormBox className="col-md-6">
         <form className="container-fluid" onSubmit={this.handleFormSubmit}>
-          {/* Name of the user */}
-          <Input
-            inputtype={"text"}
-            title={"Full Name"}
-            name={"name"}
-            value={this.state.newUser.name}
-            placeholder={"Enter your name"}
-            handleChange={this.handleInput}
-          />{" "}
-          {/* Age */}
-          <Input
-            inputtype={"number"}
-            title={"Age"}
-            name={"age"}
-            value={this.state.newUser.age}
-            placeholder={"Enter your age"}
-            handleChange={this.handleInput}
-          />{" "}
-          {/* Gender Selection */}
-          <Select
-            title={"Gender"}
-            name={"gender"}
-            options={this.state.genderOptions}
-            value={this.state.newUser.gender}
-            placeholder={"Select Gender"}
-            handleChange={this.handleInput}
-          />{" "}
-          {/* Skill checkbox group */}
-          <CheckBox
-            title={"Skills"}
-            name={"skills"}
-            options={this.state.skillOptions}
-            selectedOptions={this.state.newUser.skills}
-            handleChange={this.handleCheckBox}
-          />{" "}
-          {/* About textarea */}
-          <TextArea
-            title={"About you."}
-            name={"about"}
-            rows={10}
-            value={this.state.newUser.about}
-            placeholder={"Describe your past experience and skills"}
-            handleChange={this.handleInput}
-          />
-          {/* Submit button */}
-          <Button
-            type={"primary"}
-            title={"Submit"}
-            action={this.handleFormSubmit}
-            style={buttonStyle}
-          />{" "}
-          {/* Clear form button */}
-          <Button
-            type={"secondary"}
-            title={"Clear"}
-            action={this.handleClearForm}
-            style={buttonStyle}
-          />{" "}
+          <Input {...fields.name} />
+          <Input {...fields.age} />
+          <Select {...fields.gender} />
+          <CheckBox {...fields.skills} />
+          <TextArea {...fields.about} />
+          <Button {...fields.submitButton} />
+          <Button {...fields.clearButton} />
         </form>
         <pre className="out" />
         <a href="https://github.com/dearfrankg/react-controlled-form">github repo</a>

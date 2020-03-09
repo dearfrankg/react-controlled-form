@@ -11,7 +11,7 @@ const Section = styled.div`
 
 const App = () => (
   <Section>
-    <Header title="react forms" />
+    <Header title="API communication demo" />
     <FormContainer />
   </Section>
 );
